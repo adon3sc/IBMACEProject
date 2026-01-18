@@ -28,6 +28,15 @@
           }
         }
       }
+    },
+    "/division": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
     }
   }
 }
