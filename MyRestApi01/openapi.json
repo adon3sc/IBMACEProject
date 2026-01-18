@@ -19,6 +19,15 @@
           }
         }
       }
+    },
+    "/subtraction": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
     }
   }
 }
