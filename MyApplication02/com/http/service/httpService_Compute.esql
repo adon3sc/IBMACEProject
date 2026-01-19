@@ -1,24 +1,25 @@
+BROKER SCHEMA com.http.service
 
 
-
-
-CREATE COMPUTE MODULE postSum_SumCompute
+CREATE COMPUTE MODULE httpService_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- CALL CopyMessageHeaders();
 		-- CALL CopyEntireMessage();
-
+	
 		DECLARE result INT;
 
 		IF InputRoot.JSON.Data.number1 IS NULL OR InputRoot.JSON.Data.number2 IS NULL THEN
 			SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
 			SET OutputRoot.JSON.Data.Error.reason = 'number1 and number2 are required';
+			PROPAGATE TO TERMINAL 'out1';
 		ELSE
 			SET result = InputRoot.JSON.Data.number1 + InputRoot.JSON.Data.number2;
 			SET OutputRoot.JSON.Data.SumResult = result;
+			PROPAGATE TO TERMINAL 'out';
 		END IF;
-
-		RETURN TRUE;
+	
+		RETURN FALSE;
 	END;
 
 	CREATE PROCEDURE CopyMessageHeaders() BEGIN
