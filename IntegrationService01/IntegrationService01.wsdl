@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="IntegrationService01" targetNamespace="http://IntegrationService01" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://IntegrationService01" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="IntegrationService01HttpBinding" originalBindingStyle="document"/>
+        <generatedXSD location="IntegrationService01_InlineSchema1.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  
+  
+  
+  
+  <wsdl:types>
+    
+        <xsd:schema targetNamespace="http://IntegrationService01">
+      <xsd:include schemaLocation="IntegrationService01_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="sumRequestMsg">
+    <wsdl:part element="tns:sum" name="sumParameters"/>
+  </wsdl:message>
+  <wsdl:message name="sumResponseMsg">
+    <wsdl:part element="tns:sumResponse" name="sumResult"/>
+  </wsdl:message>
+    <wsdl:message name="subtractionRequestMsg">
+    <wsdl:part element="tns:subtraction" name="subtractionParameters"/>
+  </wsdl:message>
+    <wsdl:message name="subtractionResponseMsg">
+    <wsdl:part element="tns:subtractionResponse" name="subtractionResult"/>
+  </wsdl:message>
+    <wsdl:portType name="IntegrationService01">
+    <wsdl:operation name="sum">
+            <wsdl:input message="tns:sumRequestMsg" name="sumRequest"/>
+            <wsdl:output message="tns:sumResponseMsg" name="sumResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="subtraction">
+      <wsdl:input message="tns:subtractionRequestMsg" name="subtractionRequest"/>
+      <wsdl:output message="tns:subtractionResponseMsg" name="subtractionResponse"/>
+    </wsdl:operation>
+    </wsdl:portType>
+  <wsdl:binding name="IntegrationService01HttpBinding" type="tns:IntegrationService01">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="sum">
+            <soap:operation soapAction="http://IntegrationService01/sum"/>
+            <wsdl:input name="sumRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="sumResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="subtraction">
+      <soap:operation soapAction="http://IntegrationService01/subtraction"/>
+      <wsdl:input name="subtractionRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="subtractionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    </wsdl:binding>
+  <wsdl:service name="IntegrationService01HttpService">
+    <wsdl:port binding="tns:IntegrationService01HttpBinding" name="IntegrationService01HttpPort">
+      <soap:address location="http://localhost:7800/IntegrationService01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

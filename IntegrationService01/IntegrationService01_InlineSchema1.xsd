@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://IntegrationService01" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:tns="http://IntegrationService01">
+      <xsd:element ibmSchExtn:docRoot="true" name="sum">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="number1" nillable="true" type="xsd:int"/>
+                <xsd:element name="number2" nillable="true" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="sumResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="sumResp" nillable="true" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="subtraction">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="number1" nillable="true" type="xsd:int"/>
+        <xsd:element name="number2" nillable="true" type="xsd:int"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="subtractionResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="subResp" nillable="true" type="xsd:int"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

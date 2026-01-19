@@ -1,0 +1,16 @@
+
+
+Importing file: C:\Users\adones.cuellar\IBM\ACET12\workspace\IntegrationService01\IntegrationService01.wsdl
+
+The WSDL import will proceed with bindings IntegrationService01HttpBinding.
+Creating wsdl schema document for platform:/resource/IntegrationService01/IntegrationService01.wsdl.
+Parsing wsdl binding {http://IntegrationService01}IntegrationService01HttpBinding.
+Parsing wsdl binding input sum.
+Parsing wsdl binding output sum.
+Parsing wsdl binding input subtraction.
+Parsing wsdl binding output subtraction.
+Processing doc style for operation sum.
+Processing doc style for operation subtraction.
+Populating WSDL schema IntegrationService01.xsd.
+Creating file IntegrationService01.xsd in the workspace.
+Copying source WSDL IntegrationService01.wsdl to IntegrationService01.wsdl.
