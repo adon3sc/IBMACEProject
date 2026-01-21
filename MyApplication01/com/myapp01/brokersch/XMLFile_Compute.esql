@@ -1,0 +1,46 @@
+BROKER SCHEMA com.myapp01.brokersch
+
+
+CREATE COMPUTE MODULE XMLFile_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		
+		DECLARE I INT;
+		
+		SET I = 1;
+		FOR data_emp AS InputRoot.XMLNSC.ListaEmpleado.empleado[] DO
+			
+			SET OutputRoot.JSON.Data.Item[I].name = data_emp.name;
+			SET OutputRoot.JSON.Data.Item[I].age = data_emp.age;
+			SET OutputRoot.JSON.Data.Item[I].salary = data_emp.salary;
+			SET OutputRoot.JSON.Data.Item[I].SalaryByMonth = CAST(data_emp.salary as DECIMAL) / 12;
+			
+			IF CAST(data_emp.age AS INT) > 30 THEN
+				SET OutputRoot.JSON.Data.Item[I].Type = 'Type A';
+			ELSE
+				SET OutputRoot.JSON.Data.Item[I].Type = 'Type B';
+			END IF;
+			
+			SET I = I + 1;
+			
+		END FOR;
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
