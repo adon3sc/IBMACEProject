@@ -1,0 +1,40 @@
+
+
+CREATE COMPUTE MODULE getGetAllEmployee_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		
+		DECLARE salario DECIMAL 0.00;
+		SET salario = InputRoot.HTTPInputHeader.Salary;
+		
+		SET OutputLocalEnvironment.Employees.Items[] = (SELECT E.Id, E.Nombre, E.Edad, E.Salario 
+														FROM Database.dbo.Empleados AS E WHERE E.Salario >= salario);
+		
+		--SET RESPONSE
+		IF EXISTS (OutputLocalEnvironment.Employees.Items[]) THEN
+			FOR Emp AS OutputLocalEnvironment.Employees.Items[] DO
+				
+				CREATE LASTCHILD OF OutputRoot.JSON.Data NAME 'Employee';
+				SET OutputRoot.JSON.Data.Employee[<] = Emp;
+				
+			END FOR;
+		END IF;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
