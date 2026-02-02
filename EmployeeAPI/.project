@@ -3,6 +3,7 @@
 	<name>EmployeeAPI</name>
 	<comment></comment>
 	<projects>
+		<project>EmployeeAPIJava</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

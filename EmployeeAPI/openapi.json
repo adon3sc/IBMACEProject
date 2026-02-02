@@ -28,6 +28,15 @@
           }
         }
       }
+    },
+    "/getById": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
     }
   }
 }
